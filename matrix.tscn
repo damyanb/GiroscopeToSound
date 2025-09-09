@@ -1,0 +1,140 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://neg.png" type="Texture" id=1]
+[ext_resource path="res://LFAXD.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://fondo.gd" type="Script" id=3]
+[ext_resource path="res://matrix.gd" type="Script" id=4]
+[ext_resource path="res://do.wav" type="AudioStream" id=5]
+[ext_resource path="res://Label.gd" type="Script" id=6]
+[ext_resource path="res://do.gd" type="Script" id=7]
+[ext_resource path="res://Timer.gd" type="Script" id=8]
+[ext_resource path="res://grav.gd" type="Script" id=9]
+[ext_resource path="res://acy.gd" type="Script" id=10]
+[ext_resource path="res://max.gd" type="Script" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "neg",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 55
+outline_color = Color( 0.772549, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 63
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 55
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 55
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 56
+outline_size = 2
+font_data = ExtResource( 2 )
+
+[node name="matrix" type="Node2D"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="fondo" type="AnimatedSprite" parent="."]
+position = Vector2( 360, 640 )
+frames = SubResource( 1 )
+animation = "neg"
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 136.0
+margin_top = 320.0
+margin_right = 534.0
+margin_bottom = 491.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.929412, 0.462745, 0.0392157, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rad" type="Label" parent="."]
+margin_left = -98.4994
+margin_top = 294.421
+margin_right = 253.501
+margin_bottom = 797.421
+custom_fonts/font = SubResource( 3 )
+text = "x   
+
+y  
+
+z"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="do" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.001
+autostart = true
+script = ExtResource( 8 )
+
+[node name="acy" type="Label" parent="."]
+margin_left = 133.0
+margin_top = 486.0
+margin_right = 518.0
+margin_bottom = 624.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.870588, 0.607843, 0.0784314, 1 )
+text = "gravity"
+valign = 1
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="acz" type="Label" parent="."]
+margin_left = 135.518
+margin_top = 626.86
+margin_right = 490.518
+margin_bottom = 798.86
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.921569, 0.462745, 0.0745098, 1 )
+valign = 1
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="max" type="Label" parent="."]
+margin_left = 80.5612
+margin_top = 777.918
+margin_right = 410.561
+margin_bottom = 975.918
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.87451, 0.407843, 0.0823529, 1 )
+text = "xd
+"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Timer" to="max" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="acy" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="acz" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer" to="Label" method="_on_Timer_timeout"]
